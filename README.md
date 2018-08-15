@@ -1,1 +1,1 @@
-# safeada.github.io
+https://safeada.com
