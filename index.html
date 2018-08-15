@@ -20,6 +20,7 @@
   <!-- CSS dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="aquamarine.css">
+  
   <!-- Script: Make my navbar transparent when the document is scrolled to top -->
   <script src="js/navbar-ontop.js"></script>
   <!-- Script: Animated entrance -->
@@ -142,22 +143,8 @@
               <div class="carousel-item active">
                 <img src="assets/app/reviews_logo_1_light.png" class="img-block mx-auto my-3 d-block" width="250" data-holder-rendered="true">
                 <div class="blockquote ">
-                  <p class="m-0">I can barely imagine my life without Pingendo</p>
-                  <div class="blockquote-footer">Alex Denver, Tech reviews</div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="assets/app/reviews_logo_2_light.png" class="img-fluid my-3 mx-auto d-block" data-holder-rendered="true">
-                <div class="blockquote ">
-                  <p class="m-0">Pingendo sets a new standard for apps.</p>
-                  <div class="blockquote-footer">Sarah Krichko, APPetizer</div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="assets/app/reviews_logo_3_light.png" class="img-fluid my-3 mx-auto d-block" data-holder-rendered="true">
-                <div class="blockquote ">
-                  <p class="m-0">Amazing, unique, essential and priceless</p>
-                  <div class="blockquote-footer">Monica Lay, News apps</div>
+                  <p class="m-0">review1</p>
+                  <div class="blockquote-footer">review author1</div>
                 </div>
               </div>
             </div>
@@ -204,18 +191,19 @@
           </form>
         </div>
         <div class="col-4 col-md-1 align-self-center my-3">
-          <a href="https://www.facebook.com" target="blank">
+          <a href="https://t.me/safeadawallet" target="blank">
+            <i class="fa fa-fw fa-telegram fa-3x text-white"></i>
+          </a>
+        </div>
+
+        <div class="col-4 col-md-1 align-self-center my-3">
+          <a href="#" target="blank">
             <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
           </a>
         </div>
         <div class="col-4 col-md-1 align-self-center my-3">
-          <a href="https://twitter.com" target="blank">
+          <a href="#" target="blank">
             <i class="fa fa-fw fa-twitter fa-3x text-white"></i>
-          </a>
-        </div>
-        <div class="col-4 col-md-1 align-self-center my-3">
-          <a href="https://www.instagram.com" target="blank">
-            <i class="fa fa-fw fa-instagram fa-3x text-white"></i>
           </a>
         </div>
       </div>
@@ -232,9 +220,58 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <!-- Script: Smooth scrolling between anchors in the same page -->
   <script src="js/smooth-scroll.js"></script>
-  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:250px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;
-    <img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16">
-  </pingendo>
+  <script src="js/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://unpkg.com/i18next/i18next.min.js"></script>
+    <script>
+function trans(q) {
+    q.each(function(_, elm) {
+        let o = $(elm);
+        o.text(i18next.t(o.text()));
+    });
+}
+i18next
+    .use(i18nextBrowserLanguageDetector)
+    .init({
+  //lng: 'cn',
+  debug: true,
+  resources: {
+    "zh-CN": {
+      translation: {
+        "Safe ADA": "小艾钱包",
+        "Safe ADA Wallet": "小艾钱包",
+        "Features": "功能",
+        "Reviews": "评价",
+        "Download": "下载",
+        "Open source wallet for ADA": "开源的ADA钱包",
+        "Download Safe ADA": "下载小艾钱包",
+        "Get it on your mobile device right now": "点击以下按钮在手机上安装",
+        "Sign up to our newsletter for the latest news": "输入邮箱订阅项目最新进展",
+        "Subscribe": "订阅",
+        "Learn more": "了解更多",
+        "Your e-mail here": "输入邮箱地址",
+
+        "Open source and Secure": "代码开源确保私钥和隐私安全",
+        "Works everywhere": "支持桌面和移动端各种平台",
+        "Features from the future": "后续功能",
+        "review1": "即将上线，敬请期待",
+        "review author1": "Safe ADA团队",
+      }
+    },
+    "en": {
+      "review1": "Coming soon...",
+      "review author1": "Safe ADA Team",
+    },
+  }
+}, function(err, t) {
+  $('.navbar-brand:eq(0)').contents().last().replaceWith(i18next.t('Safe ADA Wallet'))
+  trans($('h1.display-1, h2, p.lead, b, .navbar-nav a, .btn, #carousel p.m-0, #carousel .blockquote-footer'));
+  $('input').each(function(_, e) {
+      let o = $(e);
+      o.attr('placeholder', i18next.t(o.attr('placeholder')));
+  })
+  //document.getElementById('output').innerHTML = ;
+});
+    </script>
 </body>
 
 </html>
